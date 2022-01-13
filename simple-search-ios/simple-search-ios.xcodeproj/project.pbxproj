@@ -16,6 +16,7 @@
 		C9575B84278F55170090130E /* simple_search_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575B83278F55170090130E /* simple_search_iosTests.swift */; };
 		C9575B8E278F55170090130E /* simple_search_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575B8D278F55170090130E /* simple_search_iosUITests.swift */; };
 		C9575B90278F55170090130E /* simple_search_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575B8F278F55170090130E /* simple_search_iosUITestsLaunchTests.swift */; };
+		C9575B9D2790DCBF0090130E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575B9C2790DCBF0090130E /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		C9575B89278F55170090130E /* simple-search-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "simple-search-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9575B8D278F55170090130E /* simple_search_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = simple_search_iosUITests.swift; sourceTree = "<group>"; };
 		C9575B8F278F55170090130E /* simple_search_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = simple_search_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C9575B9C2790DCBF0090130E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				C9575B6C278F55150090130E /* AppDelegate.swift */,
 				C9575B6E278F55150090130E /* SceneDelegate.swift */,
 				C9575B70278F55150090130E /* MainViewController.swift */,
+				C9575B9C2790DCBF0090130E /* ViewController.swift */,
 				C9575B72278F55150090130E /* Main.storyboard */,
 				C9575B75278F55170090130E /* Assets.xcassets */,
 				C9575B77278F55170090130E /* LaunchScreen.storyboard */,
@@ -260,6 +263,7 @@
 			files = (
 				C9575B71278F55150090130E /* MainViewController.swift in Sources */,
 				C9575B6D278F55150090130E /* AppDelegate.swift in Sources */,
+				C9575B9D2790DCBF0090130E /* ViewController.swift in Sources */,
 				C9575B6F278F55150090130E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
