@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  SearchViewController.swift
 //  simple-search-ios
 //
 //  Created by Kelly Morales on 1/12/22.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class SearchViewController: UIViewController {
 
     private let searchController = UISearchController()
 
@@ -25,7 +25,7 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: UISearchResultsUpdating {
+extension SearchViewController: UISearchResultsUpdating {
 
     func updateSearchResults(for searchController: UISearchController) {
         let searchTerm = searchController.searchBar.text
