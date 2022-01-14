@@ -28,17 +28,17 @@ class SearchNetworkingProvider: SearchNetworkingProviding {
     var searchTask: URLSessionDataTask?
 
     func fetchArtist(_ artist: String, completion: ArtistsResult?) {
+        // Cancel any ongoing search tasks before starting a new one
+        if let searchTask = searchTask {
+            searchTask.cancel()
+        }
+
         guard let url = searchArtistURL(artist: artist) else {
             assertionFailure("Error: Unable to create search URL.")
             return
         }
 
         let request = loadGETRequest(with: url)
-
-        // Cancel any ongoing search tasks before starting a new one
-        if let searchTask = searchTask {
-            searchTask.cancel()
-        }
 
         searchTask = URLSession.shared.dataTask(with: request) { data, result, error in
             if let error = error {
