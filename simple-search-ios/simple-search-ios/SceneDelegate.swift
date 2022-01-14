@@ -18,6 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         let searchViewController = SearchViewController()
+        searchViewController.searchNetworkingProvider = SearchNetworkingProvider()
         let navController = UINavigationController(rootViewController: searchViewController)
 
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
