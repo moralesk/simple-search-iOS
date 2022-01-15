@@ -7,6 +7,9 @@
 
 import UIKit
 
+/**
+ * ViewController for displaying an artist's albums in a UICollectionView
+ */
 class AlbumListViewController: UIViewController {
 
     private let collectionView: UICollectionView = {
@@ -58,7 +61,7 @@ extension AlbumListViewController: UICollectionViewDelegate {
             self?.networkingProvider?.fetchAlbumTracklist(albumID: album.id) { result in
                 switch result {
                 case .success(let tracks):
-                    print(tracks)
+                    self?.navigateToTracklist(tracks: tracks)
                 case .failure(let error):
                     print(error)
                 }
@@ -93,6 +96,12 @@ private extension AlbumListViewController {
 
     struct Constants {
         static let cellPadding: CGFloat = 12
+    }
+
+    func navigateToTracklist(tracks: [Track]) {
+        let viewController = TracklistViewController()
+        viewController.tracks = tracks
+        navigationController?.pushViewController(viewController, animated: true)
     }
 
     func setUpCollectionView() {
