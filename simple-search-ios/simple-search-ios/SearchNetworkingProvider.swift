@@ -12,6 +12,7 @@ import Foundation
  */
 protocol SearchNetworkingProviding: AnyObject {
     typealias ArtistsResult = ((Result<[Artist], Error>) -> Void)
+    typealias AlbumsResult = ((Result<[Album], Error>) -> Void)
 
     /**
      * Fetches the search results for the given `artist` name from the Deezer API
@@ -19,6 +20,14 @@ protocol SearchNetworkingProviding: AnyObject {
      * - parameter completion: Closure that accepts a Result type where the success case gives an array of `Artist`s
      */
     func fetchArtist(_ artist: String, completion: ArtistsResult?)
+
+    /**
+     * Fetches an artist's albums given their `artistID`
+     * - parameter artistID: The artist's Deezer ID
+     * - parameter completion: Closure that accepts a Result type where the success
+     * case gives an array of the artist's `Album`s
+     */
+    func fetchAlbums(_ artistID: Int, completion: AlbumsResult?)
 }
 
 /// Conforms to `SearchNetworkingProviding` to implement remote networking calls to Deezer's search API
@@ -59,6 +68,33 @@ class SearchNetworkingProvider: SearchNetworkingProviding {
         }
         searchTask?.resume()
     }
+
+    func fetchAlbums(_ artistID: Int, completion: AlbumsResult?) {
+        guard let url = albumsURL(artistID: artistID) else {
+            assertionFailure("Error: Unable to create artist albums URL.")
+            return
+        }
+
+        let request = loadGETRequest(with: url)
+
+        URLSession.shared.dataTask(with: request) { data, result, error in
+            if let error = error {
+                completion?(.failure(error))
+                return
+            }
+
+            guard let data = data else {
+                completion?(.failure(SearchError.noData))
+                return
+            }
+
+            if let albumsData = try? JSONDecoder().decode(Albums.self, from: data) {
+                DispatchQueue.main.async {
+                    completion?(.success(albumsData.albumsArray))
+                }
+            }
+        }.resume()
+    }
 }
 
 // MARK: - Private
@@ -92,6 +128,17 @@ private extension SearchNetworkingProvider {
         ]
 
         return searchURLComponents.url
+    }
+
+    /// Builds the URL for retrieving an artist's albums
+    func albumsURL(artistID: Int) -> URL? {
+        guard var albumsURLComponents = URLComponents(string: API.baseURL) else {
+            assertionFailure("Error: nil albumsURLComponents.")
+            return nil
+        }
+
+        albumsURLComponents.path = API.Endpoint.artist + "/\(artistID)" + API.Endpoint.artistAlbums
+        return albumsURLComponents.url
     }
 
     /// Returns a GET URLRequest for the given URL param
