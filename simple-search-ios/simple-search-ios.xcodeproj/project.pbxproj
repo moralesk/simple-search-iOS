@@ -19,6 +19,7 @@
 		C9575B9D2790DCBF0090130E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575B9C2790DCBF0090130E /* ViewController.swift */; };
 		C9575B9F2790E4250090130E /* SearchNetworkingProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575B9E2790E4250090130E /* SearchNetworkingProvider.swift */; };
 		C9575BA12791C5680090130E /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575BA02791C5680090130E /* Artist.swift */; };
+		C9575BA3279239F60090130E /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575BA2279239F60090130E /* Album.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		C9575B9C2790DCBF0090130E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C9575B9E2790E4250090130E /* SearchNetworkingProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNetworkingProvider.swift; sourceTree = "<group>"; };
 		C9575BA02791C5680090130E /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
+		C9575BA2279239F60090130E /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				C9575B7A278F55170090130E /* Info.plist */,
 				C9575B9E2790E4250090130E /* SearchNetworkingProvider.swift */,
 				C9575BA02791C5680090130E /* Artist.swift */,
+				C9575BA2279239F60090130E /* Album.swift */,
 			);
 			path = "simple-search-ios";
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				C9575B6D278F55150090130E /* AppDelegate.swift in Sources */,
 				C9575B9D2790DCBF0090130E /* ViewController.swift in Sources */,
 				C9575B9F2790E4250090130E /* SearchNetworkingProvider.swift in Sources */,
+				C9575BA3279239F60090130E /* Album.swift in Sources */,
 				C9575B6F278F55150090130E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
