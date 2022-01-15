@@ -25,6 +25,7 @@
 		C9575BAB279341970090130E /* NetworkingProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575BAA279341970090130E /* NetworkingProviding.swift */; };
 		C9575BAD27935DF00090130E /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575BAC27935DF00090130E /* Track.swift */; };
 		C9575BAF279361370090130E /* DeezerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575BAE279361370090130E /* DeezerAPI.swift */; };
+		C9575BB327938DC90090130E /* TracklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575BB227938DC90090130E /* TracklistViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		C9575BAA279341970090130E /* NetworkingProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingProviding.swift; sourceTree = "<group>"; };
 		C9575BAC27935DF00090130E /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		C9575BAE279361370090130E /* DeezerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeezerAPI.swift; sourceTree = "<group>"; };
+		C9575BB227938DC90090130E /* TracklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracklistViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				C9575B7A278F55170090130E /* Info.plist */,
 				C9575BAA279341970090130E /* NetworkingProviding.swift */,
 				C9575BAE279361370090130E /* DeezerAPI.swift */,
+				C9575BB227938DC90090130E /* TracklistViewController.swift */,
 			);
 			path = "simple-search-ios";
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				C9575BA527931CDD0090130E /* AlbumListViewController.swift in Sources */,
 				C9575BAB279341970090130E /* NetworkingProviding.swift in Sources */,
 				C9575B9F2790E4250090130E /* SearchNetworkingProvider.swift in Sources */,
+				C9575BB327938DC90090130E /* TracklistViewController.swift in Sources */,
 				C9575BA7279338890090130E /* AlbumNetworkingProvider.swift in Sources */,
 				C9575BA3279239F60090130E /* Album.swift in Sources */,
 				C9575B6F278F55150090130E /* SceneDelegate.swift in Sources */,
