@@ -85,17 +85,20 @@ extension SearchViewController: UISearchResultsUpdating {
 extension SearchViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let artistID = artists?[indexPath.row].id else {
+        guard let artist = artists?[indexPath.row] else {
             assertionFailure("Error: could not unwrap selected artist")
             return
         }
 
         DispatchQueue.global().async { [weak self] in
-            self?.searchNetworkingProvider?.fetchAlbums(artistID) { [weak self] result in
+            self?.searchNetworkingProvider?.fetchAlbums(artist.id) { [weak self] result in
                 switch result {
                 case .success(let albums):
-                    // go to artist albums
-                    print(albums)
+                    if albums.isEmpty {
+                        // error handling, don't send user to see album list
+                    } else {
+                        self?.navigateToAlbums(artist: artist.name, albums: albums)
+                    }
                 case .failure(let error):
                     // show error state
                     print(error)
@@ -109,7 +112,7 @@ extension SearchViewController: UITableViewDelegate {
 extension SearchViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // no rows if there are no locally saved artists & nothing in the search bar, or either value is nil
+        // display no rows if there are no locally saved artists & nothing in the search bar, or if either value is nil
         if (searchController.searchBar.text?.isEmpty ?? true) && (artists?.isEmpty ?? true) {
             return 0
         }
@@ -128,25 +131,33 @@ extension SearchViewController: UITableViewDataSource {
 // MARK: - Private
 private extension SearchViewController {
 
+    func navigateToAlbums(artist: String, albums: [Album]) {
+        let viewController = AlbumListViewController()
+        viewController.albums = albums
+        viewController.networkingProvider = AlbumNetworkingProvider()
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+
     func setUpTableView() {
         view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
+        
         let topConstraint = NSLayoutConstraint(item: tableView,
                                                attribute: .top,
                                                relatedBy: .equal,
                                                toItem: view,
-                                               attribute: .topMargin,
+                                               attribute: .top,
                                                multiplier: 1,
                                                constant: 0)
 
         let leadingConstraint = NSLayoutConstraint(item: tableView,
-                                               attribute: .leading,
-                                               relatedBy: .equal,
-                                               toItem: view,
-                                               attribute: .leading,
-                                               multiplier: 1,
-                                               constant: 0)
+                                                   attribute: .leading,
+                                                   relatedBy: .equal,
+                                                   toItem: view,
+                                                   attribute: .leading,
+                                                   multiplier: 1,
+                                                   constant: 0)
 
         let trailingConstraint = NSLayoutConstraint(item: tableView,
                                                     attribute: .trailing,
