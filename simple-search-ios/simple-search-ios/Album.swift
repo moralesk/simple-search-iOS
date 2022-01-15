@@ -20,10 +20,21 @@ struct Album: Decodable {
     let title: String
     let link: String
     let cover: String
-    let cover_small: String
-    let cover_medium: String
-    let release_date: String
-    let record_type: String
-    let tracklist: String
-    let explicit_lyrics: Bool
+    let coverSmall: String
+    let coverMedium: String
+    let releaseDate: String
+    let type: String
+    let isExplicit: Bool
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case link
+        case cover
+        case coverSmall = "cover_small"
+        case coverMedium = "cover_medium"
+        case releaseDate = "release_date"
+        case type = "record_type"
+        case isExplicit = "explicit_lyrics"
+    }
 }
