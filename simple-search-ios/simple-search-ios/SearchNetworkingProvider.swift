@@ -10,7 +10,7 @@ import Foundation
 /**
  * Provides functionality for using Deezer's search API's
  */
-protocol SearchNetworkingProviding: AnyObject {
+protocol SearchNetworkingProviding: NetworkingProviding {
     typealias ArtistsResult = ((Result<[Artist], Error>) -> Void)
     typealias AlbumsResult = ((Result<[Album], Error>) -> Void)
 
@@ -31,7 +31,7 @@ protocol SearchNetworkingProviding: AnyObject {
 }
 
 /// Conforms to `SearchNetworkingProviding` to implement remote networking calls to Deezer's search API
-class SearchNetworkingProvider: SearchNetworkingProviding {
+class SearchNetworkingProvider: SearchNetworkingProviding, NetworkingProviding {
 
     /// The current data task used for searching
     var searchTask: URLSessionDataTask?
@@ -56,7 +56,7 @@ class SearchNetworkingProvider: SearchNetworkingProviding {
             }
 
             guard let data = data else {
-                completion?(.failure(SearchError.noData))
+                completion?(.failure(NetworkError.noData))
                 return
             }
 
@@ -84,7 +84,7 @@ class SearchNetworkingProvider: SearchNetworkingProviding {
             }
 
             guard let data = data else {
-                completion?(.failure(SearchError.noData))
+                completion?(.failure(NetworkError.noData))
                 return
             }
 
@@ -100,29 +100,14 @@ class SearchNetworkingProvider: SearchNetworkingProviding {
 // MARK: - Private
 private extension SearchNetworkingProvider {
 
-    enum SearchError: Error {
-        case noData
-    }
-
-    struct API {
-        static let baseURL = "https://api.deezer.com"
-
-        struct Endpoint {
-            static let search = "/search"
-            static let artist = "/artist"
-            static let artistAlbums = "/albums"
-            static let albumTracks = "/tracks"
-        }
-    }
-
     /// Builds the URL for searching for an Artist
     func searchArtistURL(artist: String) -> URL? {
-        guard var searchURLComponents = URLComponents(string: API.baseURL) else {
+        guard var searchURLComponents = URLComponents(string: DeezerAPI.baseURL) else {
             assertionFailure("Error: nil searchURLComponents.")
             return nil
         }
 
-        searchURLComponents.path = API.Endpoint.search + API.Endpoint.artist
+        searchURLComponents.path = DeezerAPI.Endpoint.search + DeezerAPI.Endpoint.artist
         searchURLComponents.queryItems = [
             URLQueryItem(name: "q", value: artist)
         ]
@@ -132,19 +117,12 @@ private extension SearchNetworkingProvider {
 
     /// Builds the URL for retrieving an artist's albums
     func albumsURL(artistID: Int) -> URL? {
-        guard var albumsURLComponents = URLComponents(string: API.baseURL) else {
+        guard var albumsURLComponents = URLComponents(string: DeezerAPI.baseURL) else {
             assertionFailure("Error: nil albumsURLComponents.")
             return nil
         }
 
-        albumsURLComponents.path = API.Endpoint.artist + "/\(artistID)" + API.Endpoint.artistAlbums
+        albumsURLComponents.path = DeezerAPI.Endpoint.artist + "/\(artistID)" + DeezerAPI.Endpoint.artistAlbums
         return albumsURLComponents.url
-    }
-
-    /// Returns a GET URLRequest for the given URL param
-    func loadGETRequest(with url: URL) -> URLRequest {
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        return request
     }
 }
