@@ -130,7 +130,6 @@
 				C9575B7A278F55170090130E /* Info.plist */,
 				C9575BAA279341970090130E /* NetworkingProviding.swift */,
 				C9575BAE279361370090130E /* DeezerAPI.swift */,
-				C9575BB227938DC90090130E /* TracklistViewController.swift */,
 			);
 			path = "simple-search-ios";
 			sourceTree = "<group>";
@@ -169,6 +168,7 @@
 				C9575BA427931CDD0090130E /* AlbumListViewController.swift */,
 				C9575BA6279338890090130E /* AlbumNetworkingProvider.swift */,
 				C9575BAC27935DF00090130E /* Track.swift */,
+				C9575BB227938DC90090130E /* TracklistViewController.swift */,
 			);
 			path = AlbumDetails;
 			sourceTree = "<group>";
