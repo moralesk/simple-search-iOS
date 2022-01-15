@@ -117,21 +117,16 @@
 		C9575B6B278F55150090130E /* simple-search-ios */ = {
 			isa = PBXGroup;
 			children = (
+				C9575BB127938B440090130E /* AlbumDetails */,
+				C9575BB027938B170090130E /* ArtistSearch */,
 				C9575B6C278F55150090130E /* AppDelegate.swift */,
 				C9575B6E278F55150090130E /* SceneDelegate.swift */,
-				C9575B70278F55150090130E /* SearchViewController.swift */,
 				C9575B9C2790DCBF0090130E /* ViewController.swift */,
 				C9575B72278F55150090130E /* Main.storyboard */,
 				C9575B75278F55170090130E /* Assets.xcassets */,
 				C9575B77278F55170090130E /* LaunchScreen.storyboard */,
 				C9575B7A278F55170090130E /* Info.plist */,
-				C9575B9E2790E4250090130E /* SearchNetworkingProvider.swift */,
-				C9575BA02791C5680090130E /* Artist.swift */,
-				C9575BA2279239F60090130E /* Album.swift */,
-				C9575BA427931CDD0090130E /* AlbumListViewController.swift */,
-				C9575BA6279338890090130E /* AlbumNetworkingProvider.swift */,
 				C9575BAA279341970090130E /* NetworkingProviding.swift */,
-				C9575BAC27935DF00090130E /* Track.swift */,
 				C9575BAE279361370090130E /* DeezerAPI.swift */,
 			);
 			path = "simple-search-ios";
@@ -152,6 +147,27 @@
 				C9575B8F278F55170090130E /* simple_search_iosUITestsLaunchTests.swift */,
 			);
 			path = "simple-search-iosUITests";
+			sourceTree = "<group>";
+		};
+		C9575BB027938B170090130E /* ArtistSearch */ = {
+			isa = PBXGroup;
+			children = (
+				C9575BA02791C5680090130E /* Artist.swift */,
+				C9575B9E2790E4250090130E /* SearchNetworkingProvider.swift */,
+				C9575B70278F55150090130E /* SearchViewController.swift */,
+			);
+			path = ArtistSearch;
+			sourceTree = "<group>";
+		};
+		C9575BB127938B440090130E /* AlbumDetails */ = {
+			isa = PBXGroup;
+			children = (
+				C9575BA2279239F60090130E /* Album.swift */,
+				C9575BA427931CDD0090130E /* AlbumListViewController.swift */,
+				C9575BA6279338890090130E /* AlbumNetworkingProvider.swift */,
+				C9575BAC27935DF00090130E /* Track.swift */,
+			);
+			path = AlbumDetails;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
