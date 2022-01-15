@@ -81,6 +81,30 @@ extension SearchViewController: UISearchResultsUpdating {
     }
 }
 
+// MARK: - UITableViewDelegate
+extension SearchViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let artistID = artists?[indexPath.row].id else {
+            assertionFailure("Error: could not unwrap selected artist")
+            return
+        }
+
+        DispatchQueue.global().async { [weak self] in
+            self?.searchNetworkingProvider?.fetchAlbums(artistID) { [weak self] result in
+                switch result {
+                case .success(let albums):
+                    // go to artist albums
+                    print(albums)
+                case .failure(let error):
+                    // show error state
+                    print(error)
+                }
+            }
+        }
+    }
+}
+
 // MARK: - UITableViewDataSource
 extension SearchViewController: UITableViewDataSource {
 
@@ -107,6 +131,7 @@ private extension SearchViewController {
     func setUpTableView() {
         view.addSubview(tableView)
         tableView.dataSource = self
+        tableView.delegate = self
         let topConstraint = NSLayoutConstraint(item: tableView,
                                                attribute: .top,
                                                relatedBy: .equal,
@@ -139,6 +164,11 @@ private extension SearchViewController {
                                                   multiplier: 1,
                                                   constant: 0)
 
-        NSLayoutConstraint.activate([topConstraint, leadingConstraint, trailingConstraint, bottomConstraint])
+        NSLayoutConstraint.activate([
+            topConstraint,
+            leadingConstraint,
+            trailingConstraint,
+            bottomConstraint
+        ])
     }
 }
