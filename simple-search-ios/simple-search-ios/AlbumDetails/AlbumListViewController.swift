@@ -20,6 +20,9 @@ class AlbumListViewController: UIViewController {
         return collectionView
     }()
 
+    /// The album's artist, used for UI
+    var artistName: String?
+
     /// The list of albums displayed in the collectionView
     var albums: [Album]?
 
@@ -28,6 +31,7 @@ class AlbumListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemGray6
         setUpCollectionView()
     }
 }
@@ -40,11 +44,17 @@ extension AlbumListViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "test", for: indexPath) as? UICollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumCollectionViewCell.reuseID,
+                                                            for: indexPath) as? AlbumCollectionViewCell else {
             return UICollectionViewCell()
         }
 
-        cell.backgroundColor = .systemGray6
+        guard let album = albums?[indexPath.item] else {
+            return UICollectionViewCell()
+        }
+
+        cell.imageNetworkingProvider = ImageNetworkingProvider()
+        cell.bind(album: album, artistName: artistName ?? "")
         return cell
     }
 }
@@ -86,7 +96,7 @@ extension AlbumListViewController: UICollectionViewDelegateFlowLayout {
         // create a square cell size that is half of the full screen width
         // with the left and right cell paddings subtracted
         let portraitOrientationWidth = UIScreen.main.bounds.width / 2 - (Constants.cellPadding * 2)
-        let labelHeight = 50.0
+        let labelHeight = 65.0
         return CGSize(width: portraitOrientationWidth, height: portraitOrientationWidth + labelHeight)
     }
 }
@@ -95,7 +105,7 @@ extension AlbumListViewController: UICollectionViewDelegateFlowLayout {
 private extension AlbumListViewController {
 
     struct Constants {
-        static let cellPadding: CGFloat = 12
+        static let cellPadding: CGFloat = 8
     }
 
     func navigateToTracklist(tracks: [Track]) {
@@ -105,11 +115,15 @@ private extension AlbumListViewController {
     }
 
     func setUpCollectionView() {
-        view.addSubview(collectionView)
+        if collectionView.superview == nil {
+            view.addSubview(collectionView)
+        }
+        
         collectionView.dataSource = self
         collectionView.delegate = self
 
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "test")
+        collectionView.register(AlbumCollectionViewCell.self,
+                                forCellWithReuseIdentifier: AlbumCollectionViewCell.reuseID)
 
         let topConstraint = NSLayoutConstraint(item: collectionView,
                                                attribute: .top,
@@ -117,7 +131,7 @@ private extension AlbumListViewController {
                                                toItem: view,
                                                attribute: .top,
                                                multiplier: 1,
-                                               constant: 0)
+                                               constant: view.safeAreaInsets.top)
 
         let leadingConstraint = NSLayoutConstraint(item: collectionView,
                                                attribute: .leading,
