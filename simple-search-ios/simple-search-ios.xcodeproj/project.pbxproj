@@ -129,6 +129,7 @@
 		C9575B6B278F55150090130E /* simple-search-ios */ = {
 			isa = PBXGroup;
 			children = (
+				C9575BBE2794B3020090130E /* Extensions */,
 				C9575BB127938B440090130E /* AlbumDetails */,
 				C9575BB027938B170090130E /* ArtistSearch */,
 				C9575B6C278F55150090130E /* AppDelegate.swift */,
@@ -140,9 +141,7 @@
 				C9575B7A278F55170090130E /* Info.plist */,
 				C9575BAA279341970090130E /* NetworkingProviding.swift */,
 				C9575BAE279361370090130E /* DeezerAPI.swift */,
-				C9575BB62793938F0090130E /* UITableViewCell+ReuseID.swift */,
 				C9575BB8279395330090130E /* ImageNetworkingProvider.swift */,
-				C9575BBC2794A7C60090130E /* UICollectionViewCell+ReuseID.swift */,
 			);
 			path = "simple-search-ios";
 			sourceTree = "<group>";
@@ -186,6 +185,15 @@
 				C9575BBA27944D1E0090130E /* AlbumCollectionViewCell.swift */,
 			);
 			path = AlbumDetails;
+			sourceTree = "<group>";
+		};
+		C9575BBE2794B3020090130E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C9575BBC2794A7C60090130E /* UICollectionViewCell+ReuseID.swift */,
+				C9575BB62793938F0090130E /* UITableViewCell+ReuseID.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
