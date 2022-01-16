@@ -31,7 +31,6 @@ class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Home" // TODO: get from localized strings
 
         // using default adaptive colors to support light and dark mode
         view.backgroundColor = .systemBackground
@@ -41,6 +40,18 @@ class SearchViewController: UIViewController {
         navigationItem.searchController = searchController
 
         setUpTableView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // set title when view will appear so leaving and returning to the screen shows the title
+        title = "Home" // TODO: get from localized strings
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // change title so back button only has arrow on pushed screens
+        title = ""
     }
 }
 
@@ -122,8 +133,17 @@ extension SearchViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "test")
-        cell.textLabel?.text = artists?[indexPath.row].name
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultTableViewCell.reuseID, for: indexPath) as? SearchResultTableViewCell else {
+            assertionFailure("Error: could not dequeue SearchResultTableViewCell for indexPath \(indexPath)")
+            return UITableViewCell()
+        }
+
+        guard let artist = artists?[indexPath.row] else {
+            return UITableViewCell()
+        }
+
+        cell.imageNetworkingProvider = ImageNetworkingProvider()
+        cell.bind(artist: artist)
         return cell
     }
 }
@@ -134,12 +154,20 @@ private extension SearchViewController {
     func navigateToAlbums(artist: String, albums: [Album]) {
         let viewController = AlbumListViewController()
         viewController.albums = albums
+        viewController.artistName = artist
         viewController.networkingProvider = AlbumNetworkingProvider()
         navigationController?.pushViewController(viewController, animated: true)
     }
 
     func setUpTableView() {
-        view.addSubview(tableView)
+        if tableView.superview == nil {
+            view.addSubview(tableView)
+        }
+        
+        tableView.register(
+            SearchResultTableViewCell.self,
+            forCellReuseIdentifier: SearchResultTableViewCell.reuseID)
+
         tableView.dataSource = self
         tableView.delegate = self
         
