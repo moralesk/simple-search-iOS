@@ -14,7 +14,7 @@ protocol AlbumNetworkingProviding: AnyObject {
     /**
      * Fetches the tracklist for the given `albumID` from the Deezer API
      * - parameter albumID: The ID of the album we want the tracklist of
-     * - parameter completion: Closure that accepts a Result type where the success
+     * - parameter completion: Closure that accepts a `Result` type where the success
      * case gives an array of `Track`s in the album
      */
     func fetchAlbumTracklist(albumID: Int, completion: TracklistResult?)
