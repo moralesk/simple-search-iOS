@@ -17,14 +17,14 @@ protocol SearchNetworkingProviding: NetworkingProviding {
     /**
      * Fetches the search results for the given `artist` name from the Deezer API
      * - parameter artist: The name of the artist to search for
-     * - parameter completion: Closure that accepts a Result type where the success case gives an array of `Artist`s
+     * - parameter completion: Closure that accepts a `Result` type where the success case gives an array of `Artist`s
      */
     func fetchArtist(_ artist: String, completion: ArtistsResult?)
 
     /**
      * Fetches an artist's albums given their `artistID`
      * - parameter artistID: The artist's Deezer ID
-     * - parameter completion: Closure that accepts a Result type where the success
+     * - parameter completion: Closure that accepts a `Result` type where the success
      * case gives an array of the artist's `Album`s
      */
     func fetchAlbums(_ artistID: Int, completion: AlbumsResult?)
