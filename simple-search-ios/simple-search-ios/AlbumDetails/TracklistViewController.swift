@@ -46,7 +46,10 @@ extension TracklistViewController: UITableViewDataSource {
 private extension TracklistViewController {
 
     func setUpTableView() {
-        view.addSubview(tableView)
+        if tableView.superview == nil {
+            view.addSubview(tableView)
+        }
+        
         tableView.dataSource = self
 
         let topConstraint = NSLayoutConstraint(item: tableView,
