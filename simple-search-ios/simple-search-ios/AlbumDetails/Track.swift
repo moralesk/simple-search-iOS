@@ -22,13 +22,11 @@ class Track: Decodable {
     let title: String
     let duration: Int
     let trackPosition: Int
-    let isExplicit: Bool
     let artist: TrackArtist
 
     enum CodingKeys: String, CodingKey {
         case id, title, duration
         case trackPosition = "track_position"
-        case isExplicit = "explicit_lyrics"
         case artist
     }
 }
