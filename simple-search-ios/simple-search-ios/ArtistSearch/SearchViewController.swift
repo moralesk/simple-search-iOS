@@ -9,45 +9,45 @@ import UIKit
 
 /// ViewController for a simple interface allowing users to search for and select artists
 class SearchViewController: UIViewController {
-
+    
     private let searchController: UISearchController = {
         let controller = UISearchController()
         controller.searchBar.placeholder = "Browse artists"
         return controller
     }()
-
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .systemGray6
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-
+    
     /// The list of artists shown in the tableView
     private var artists: [Artist]?
-
+    
     /// Class containing logic for search APIs
     var searchNetworkingProvider: SearchNetworkingProviding?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // using default adaptive colors to support light and dark mode
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.tintColor = .systemGray
-
+        
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
-
+        
         setUpTableView()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // set title when view will appear so leaving and returning to the screen shows the title
         title = "Home" // TODO: get from localized strings
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         // change title so back button only has arrow on pushed screens
@@ -57,13 +57,13 @@ class SearchViewController: UIViewController {
 
 // MARK: - UISearchResultsUpdating
 extension SearchViewController: UISearchResultsUpdating {
-
+    
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchTerm = searchController.searchBar.text else {
             assertionFailure("Error: unable to extract text from search bar.")
             return
         }
-
+        
         if searchTerm.isEmpty {
             artists?.removeAll()
             tableView.reloadData()
@@ -82,7 +82,7 @@ extension SearchViewController: UISearchResultsUpdating {
                         // show error state
                         print(error)
                     }
-
+                    
                     DispatchQueue.main.async {
                         self?.tableView.reloadData()
                     }
@@ -100,7 +100,7 @@ extension SearchViewController: UITableViewDelegate {
             assertionFailure("Error: could not unwrap selected artist")
             return
         }
-
+        
         DispatchQueue.global().async { [weak self] in
             self?.searchNetworkingProvider?.fetchAlbums(artist.id) { [weak self] result in
                 switch result {
@@ -122,26 +122,37 @@ extension SearchViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 extension SearchViewController: UITableViewDataSource {
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // display no rows if there are no locally saved artists & nothing in the search bar, or if either value is nil
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = SearchResultHeaderView()
+        headerView.bind(title: "Artists")
+        return headerView
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // display no rows if there are no locally saved artists & nothing
+        // in the search bar, or if either value is nil
         if (searchController.searchBar.text?.isEmpty ?? true) && (artists?.isEmpty ?? true) {
             return 0
         }
 
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // at least one row per artist or for an error state
         return artists?.count ?? 1
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultTableViewCell.reuseID, for: indexPath) as? SearchResultTableViewCell else {
             assertionFailure("Error: could not dequeue SearchResultTableViewCell for indexPath \(indexPath)")
             return UITableViewCell()
         }
-
+        
         guard let artist = artists?[indexPath.row] else {
             return UITableViewCell()
         }
-
+        
         cell.imageNetworkingProvider = ImageNetworkingProvider()
         cell.bind(artist: artist)
         return cell
@@ -150,7 +161,7 @@ extension SearchViewController: UITableViewDataSource {
 
 // MARK: - Private
 private extension SearchViewController {
-
+    
     func navigateToAlbums(artist: String, albums: [Album]) {
         let viewController = AlbumListViewController()
         viewController.albums = albums
@@ -158,7 +169,7 @@ private extension SearchViewController {
         viewController.networkingProvider = AlbumNetworkingProvider()
         navigationController?.pushViewController(viewController, animated: true)
     }
-
+    
     func setUpTableView() {
         if tableView.superview == nil {
             view.addSubview(tableView)
@@ -167,7 +178,7 @@ private extension SearchViewController {
         tableView.register(
             SearchResultTableViewCell.self,
             forCellReuseIdentifier: SearchResultTableViewCell.reuseID)
-
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -178,7 +189,7 @@ private extension SearchViewController {
                                                attribute: .top,
                                                multiplier: 1,
                                                constant: 0)
-
+        
         let leadingConstraint = NSLayoutConstraint(item: tableView,
                                                    attribute: .leading,
                                                    relatedBy: .equal,
@@ -186,7 +197,7 @@ private extension SearchViewController {
                                                    attribute: .leading,
                                                    multiplier: 1,
                                                    constant: 0)
-
+        
         let trailingConstraint = NSLayoutConstraint(item: tableView,
                                                     attribute: .trailing,
                                                     relatedBy: .equal,
@@ -194,7 +205,7 @@ private extension SearchViewController {
                                                     attribute: .trailing,
                                                     multiplier: 1,
                                                     constant: 0)
-
+        
         let bottomConstraint = NSLayoutConstraint(item: tableView,
                                                   attribute: .bottom,
                                                   relatedBy: .equal,
@@ -202,7 +213,7 @@ private extension SearchViewController {
                                                   attribute: .bottom,
                                                   multiplier: 1,
                                                   constant: 0)
-
+        
         NSLayoutConstraint.activate([
             topConstraint,
             leadingConstraint,
