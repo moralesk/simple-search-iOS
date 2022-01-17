@@ -73,13 +73,13 @@ extension SearchViewController: UISearchResultsUpdating {
                     switch result {
                     case .success(let artists):
                         if artists.isEmpty {
-                            // show empty state
-                            print("empty")
+                            // TODO: show empty state
+                            self?.artists = artists
                         } else {
                             self?.artists = artists
                         }
                     case .failure(let error):
-                        // show error state
+                        // TODO: show error state
                         print(error)
                     }
                     
@@ -106,13 +106,14 @@ extension SearchViewController: UITableViewDelegate {
                 switch result {
                 case .success(let albums):
                     if albums.isEmpty {
-                        // error handling, don't send user to see album list
+                        // TODO: show error.
+                        // Don't send user to see album list if there are no albums.
                     } else {
                         self?.navigateToAlbums(artist: artist.name, albums: albums)
                     }
                 case .failure(let error):
-                    // show error state
-                    print(error)
+                    // TODO: show error state
+                    assertionFailure(error.localizedDescription)
                 }
             }
         }
