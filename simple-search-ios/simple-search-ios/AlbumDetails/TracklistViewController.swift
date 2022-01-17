@@ -36,8 +36,16 @@ extension TracklistViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "test")
-        cell.textLabel?.text = tracks?[indexPath.row].title
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TrackTableViewCell.reuseID, for: indexPath) as? TrackTableViewCell else {
+            return UITableViewCell()
+        }
+
+        guard let track = tracks?[indexPath.row] else {
+            return UITableViewCell()
+        }
+
+        cell.trackDurationProvider = TrackDurationProvider()
+        cell.bind(track: track)
         return cell
     }
 }
@@ -49,7 +57,9 @@ private extension TracklistViewController {
         if tableView.superview == nil {
             view.addSubview(tableView)
         }
-        
+
+        tableView.register(TrackTableViewCell.self,
+                           forCellReuseIdentifier: TrackTableViewCell.reuseID)
         tableView.dataSource = self
 
         let topConstraint = NSLayoutConstraint(item: tableView,
