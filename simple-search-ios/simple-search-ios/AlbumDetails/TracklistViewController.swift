@@ -19,11 +19,15 @@ class TracklistViewController: UIViewController {
         return tableView
     }()
 
+    /// The name of the album for the given tracklist
+    var albumName: String?
+
     /// The list of tracks displayed in the tableView
     var tracks: [Track]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = albumName
         setUpTableView()
     }
 }
