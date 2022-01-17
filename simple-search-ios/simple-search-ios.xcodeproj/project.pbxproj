@@ -35,6 +35,7 @@
 		C9575BC22794EC610090130E /* TrackDurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575BC12794EC610090130E /* TrackDurationProvider.swift */; };
 		C9575BC42794F6FD0090130E /* TrackDurationProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575BC32794F6FD0090130E /* TrackDurationProviderTests.swift */; };
 		C9575BC52794FDAF0090130E /* TrackDurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575BC12794EC610090130E /* TrackDurationProvider.swift */; };
+		C9575BC72795C5DE0090130E /* SearchResultHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575BC62795C5DE0090130E /* SearchResultHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		C9575BBF2794B3C50090130E /* TrackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTableViewCell.swift; sourceTree = "<group>"; };
 		C9575BC12794EC610090130E /* TrackDurationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDurationProvider.swift; sourceTree = "<group>"; };
 		C9575BC32794F6FD0090130E /* TrackDurationProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDurationProviderTests.swift; sourceTree = "<group>"; };
+		C9575BC62795C5DE0090130E /* SearchResultHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 				C9575B9E2790E4250090130E /* SearchNetworkingProvider.swift */,
 				C9575B70278F55150090130E /* SearchViewController.swift */,
 				C9575BB4279393290090130E /* SearchResultTableViewCell.swift */,
+				C9575BC62795C5DE0090130E /* SearchResultHeaderView.swift */,
 			);
 			path = ArtistSearch;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				C9575B6D278F55150090130E /* AppDelegate.swift in Sources */,
 				C9575B9D2790DCBF0090130E /* ViewController.swift in Sources */,
 				C9575BA527931CDD0090130E /* AlbumListViewController.swift in Sources */,
+				C9575BC72795C5DE0090130E /* SearchResultHeaderView.swift in Sources */,
 				C9575BAB279341970090130E /* NetworkingProviding.swift in Sources */,
 				C9575B9F2790E4250090130E /* SearchNetworkingProvider.swift in Sources */,
 				C9575BC22794EC610090130E /* TrackDurationProvider.swift in Sources */,
