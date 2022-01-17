@@ -80,7 +80,9 @@ extension SearchViewController: UISearchResultsUpdating {
                         }
                     case .failure(let error):
                         // TODO: show error state
-                        assertionFailure(error.localizedDescription)
+                        // print instead of assertion failure because cancelling the task
+                        // triggers an error
+                        print(error.localizedDescription)
                     }
                     
                     DispatchQueue.main.async {
