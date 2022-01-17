@@ -108,23 +108,17 @@ private extension TrackTableViewCell {
         static let nameFontSize = 18.0
         static let artistFontSize = 14.0
         static let durationFontSize = 16.0
-        static let contentInsets = UIEdgeInsets(top: 12.0,
-                                                left: 12.0,
-                                                bottom: 12.0,
+        static let contentInsets = UIEdgeInsets(top: 8.0,
+                                                left: 8.0,
+                                                bottom: 8.0,
                                                 right: 12.0)
         static let contentSpacing = 12.0
-        static let numberLabelInsets = UIEdgeInsets(top: 12,
-                                                    left: 12,
-                                                    bottom: 12,
-                                                    right: 0)
+        static let numberContainerHeight = 30.0
+        static let numberContainerWidth = 30.0
     }
 
     func setUpView() {
         selectionStyle = .none
-
-        if contentContainerView.superview == nil {
-            contentView.addSubview(contentContainerView)
-        }
 
         setUpContentContainerView()
         setUpNumberContainerView()
@@ -200,29 +194,16 @@ private extension TrackTableViewCell {
             numberContainerView.addSubview(numberLabel)
         }
 
-        let height = NSLayoutConstraint(item: numberLabel,
-                                        attribute: .height,
-                                        relatedBy: .equal,
-                                        toItem: numberContainerView,
-                                        attribute: .height,
-                                        multiplier: 0,
-                                        constant: 30)
+        numberContainerView.heightAnchor.constraint(equalToConstant: Constants.numberContainerHeight).isActive = true
+        numberContainerView.widthAnchor.constraint(equalToConstant: Constants.numberContainerWidth).isActive = true
 
-        let width = NSLayoutConstraint(item: numberLabel,
-                                       attribute: .width,
-                                       relatedBy: .equal,
-                                       toItem: numberContainerView,
-                                       attribute: .width,
-                                       multiplier: 0,
-                                       constant: 30)
-
-        let centerXConstraint = NSLayoutConstraint(item: numberLabel,
-                                                   attribute: .centerX,
-                                                   relatedBy: .equal,
-                                                   toItem: numberContainerView,
-                                                   attribute: .centerX,
-                                                   multiplier: 1,
-                                                   constant: 0)
+        let trailingConstraint = NSLayoutConstraint(item: numberLabel,
+                                                    attribute: .trailing,
+                                                    relatedBy: .equal,
+                                                    toItem: numberContainerView,
+                                                    attribute: .trailing,
+                                                    multiplier: 1,
+                                                    constant: 0)
 
         let centerYConstraint = NSLayoutConstraint(item: numberLabel,
                                                    attribute: .centerY,
@@ -233,9 +214,7 @@ private extension TrackTableViewCell {
                                                    constant: 0)
 
         NSLayoutConstraint.activate([
-            height,
-            width,
-            centerXConstraint,
+            trailingConstraint,
             centerYConstraint
         ])
     }
