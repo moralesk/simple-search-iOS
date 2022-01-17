@@ -31,6 +31,10 @@
 		C9575BB9279395330090130E /* ImageNetworkingProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575BB8279395330090130E /* ImageNetworkingProvider.swift */; };
 		C9575BBB27944D1E0090130E /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575BBA27944D1E0090130E /* AlbumCollectionViewCell.swift */; };
 		C9575BBD2794A7C60090130E /* UICollectionViewCell+ReuseID.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575BBC2794A7C60090130E /* UICollectionViewCell+ReuseID.swift */; };
+		C9575BC02794B3C50090130E /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575BBF2794B3C50090130E /* TrackTableViewCell.swift */; };
+		C9575BC22794EC610090130E /* TrackDurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575BC12794EC610090130E /* TrackDurationProvider.swift */; };
+		C9575BC42794F6FD0090130E /* TrackDurationProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575BC32794F6FD0090130E /* TrackDurationProviderTests.swift */; };
+		C9575BC52794FDAF0090130E /* TrackDurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9575BC12794EC610090130E /* TrackDurationProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +83,9 @@
 		C9575BB8279395330090130E /* ImageNetworkingProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNetworkingProvider.swift; sourceTree = "<group>"; };
 		C9575BBA27944D1E0090130E /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		C9575BBC2794A7C60090130E /* UICollectionViewCell+ReuseID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+ReuseID.swift"; sourceTree = "<group>"; };
+		C9575BBF2794B3C50090130E /* TrackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTableViewCell.swift; sourceTree = "<group>"; };
+		C9575BC12794EC610090130E /* TrackDurationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDurationProvider.swift; sourceTree = "<group>"; };
+		C9575BC32794F6FD0090130E /* TrackDurationProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDurationProviderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +149,7 @@
 				C9575BAA279341970090130E /* NetworkingProviding.swift */,
 				C9575BAE279361370090130E /* DeezerAPI.swift */,
 				C9575BB8279395330090130E /* ImageNetworkingProvider.swift */,
+				C9575BC12794EC610090130E /* TrackDurationProvider.swift */,
 			);
 			path = "simple-search-ios";
 			sourceTree = "<group>";
@@ -150,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				C9575B83278F55170090130E /* simple_search_iosTests.swift */,
+				C9575BC32794F6FD0090130E /* TrackDurationProviderTests.swift */,
 			);
 			path = "simple-search-iosTests";
 			sourceTree = "<group>";
@@ -183,6 +192,7 @@
 				C9575BAC27935DF00090130E /* Track.swift */,
 				C9575BB227938DC90090130E /* TracklistViewController.swift */,
 				C9575BBA27944D1E0090130E /* AlbumCollectionViewCell.swift */,
+				C9575BBF2794B3C50090130E /* TrackTableViewCell.swift */,
 			);
 			path = AlbumDetails;
 			sourceTree = "<group>";
@@ -339,12 +349,14 @@
 				C9575BA527931CDD0090130E /* AlbumListViewController.swift in Sources */,
 				C9575BAB279341970090130E /* NetworkingProviding.swift in Sources */,
 				C9575B9F2790E4250090130E /* SearchNetworkingProvider.swift in Sources */,
+				C9575BC22794EC610090130E /* TrackDurationProvider.swift in Sources */,
 				C9575BB327938DC90090130E /* TracklistViewController.swift in Sources */,
 				C9575BB72793938F0090130E /* UITableViewCell+ReuseID.swift in Sources */,
 				C9575BA7279338890090130E /* AlbumNetworkingProvider.swift in Sources */,
 				C9575BA3279239F60090130E /* Album.swift in Sources */,
 				C9575BB9279395330090130E /* ImageNetworkingProvider.swift in Sources */,
 				C9575B6F278F55150090130E /* SceneDelegate.swift in Sources */,
+				C9575BC02794B3C50090130E /* TrackTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,7 +364,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9575BC42794F6FD0090130E /* TrackDurationProviderTests.swift in Sources */,
 				C9575B84278F55170090130E /* simple_search_iosTests.swift in Sources */,
+				C9575BC52794FDAF0090130E /* TrackDurationProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
