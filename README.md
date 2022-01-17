@@ -1,4 +1,4 @@
-# simple-search-iOS
+# A Simple Search App
 A native iOS app that hits endpoints from the free Deezer API to retrieve musician information, which is then displayed in a simple UI.
 
 **Walkthrough**
