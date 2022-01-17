@@ -19,15 +19,23 @@ class TracklistViewController: UIViewController {
         return tableView
     }()
 
+    /// The name of the artist of this album
+    var artist: String?
+
     /// The name of the album for the given tracklist
-    var albumName: String?
+    var album: String?
 
     /// The list of tracks displayed in the tableView
     var tracks: [Track]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = albumName
+        if let album = album {
+            let navTitleView = NavigationDetailTitleView()
+            navTitleView.bind(title: album, subtitle: artist)
+            navigationItem.titleView = navTitleView
+        }
+
         setUpTableView()
     }
 }

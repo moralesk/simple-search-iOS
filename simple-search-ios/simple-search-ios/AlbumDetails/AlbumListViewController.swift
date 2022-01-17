@@ -32,12 +32,14 @@ class AlbumListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
-        setUpCollectionView()
-    }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        title = artistName
+        if let artistName = artistName {
+            let navTitleView = NavigationDetailTitleView()
+            navTitleView.bind(title: artistName, subtitle: "Albums")
+            navigationItem.titleView = navTitleView
+        }
+
+        setUpCollectionView()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -81,7 +83,9 @@ extension AlbumListViewController: UICollectionViewDelegate {
             self?.networkingProvider?.fetchAlbumTracklist(albumID: album.id) { result in
                 switch result {
                 case .success(let tracks):
-                    self?.navigateToTracklist(tracks: tracks, albumName: album.title)
+                    self?.navigateToTracklist(tracks: tracks,
+                                              artist: self?.artistName ?? "",
+                                              album: album.title)
                 case .failure(let error):
                     print(error)
                 }
@@ -118,9 +122,10 @@ private extension AlbumListViewController {
         static let cellPadding: CGFloat = 8
     }
     
-    func navigateToTracklist(tracks: [Track], albumName: String) {
+    func navigateToTracklist(tracks: [Track], artist: String, album: String) {
         let viewController = TracklistViewController()
-        viewController.albumName = albumName
+        viewController.artist = artist
+        viewController.album = album
         viewController.tracks = tracks
         navigationController?.pushViewController(viewController, animated: true)
     }
