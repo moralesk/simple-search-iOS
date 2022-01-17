@@ -128,7 +128,7 @@ private extension SearchResultTableViewCell {
                                                   toItem: contentView,
                                                   attribute: .bottom,
                                                   multiplier: 1,
-                                                  constant: Constants.imageViewTopBottomPadding)
+                                                  constant: -Constants.imageViewTopBottomPadding)
 
         NSLayoutConstraint.activate([
             topConstraint,
