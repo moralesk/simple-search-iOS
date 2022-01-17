@@ -12,9 +12,11 @@ The landing screen should be updated to include a welcoming interface, drawing u
 |<img width="350" alt="Screen Shot 2022-01-17 at 1 37 04 PM" src="https://user-images.githubusercontent.com/11492766/149823281-c85d1c83-a6a9-4a9c-8cec-6d2a2b90fcfa.png">|<img width="350" alt="Screen Shot 2022-01-17 at 1 37 12 PM" src="https://user-images.githubusercontent.com/11492766/149823405-08a5c33e-65f7-4a00-956c-20e6f904ae0d.png">|
 
 Upon selecting an artist, you are taken to the artist's discography.
+
 <img width="350" alt="Screen Shot 2022-01-17 at 1 37 20 PM" src="https://user-images.githubusercontent.com/11492766/149823432-84d13bfa-3663-4993-9e41-04a8ab81d240.png">
 
 Selecting a specific album shows you the album's tracklist.
+
 <img width="350" alt="Screen Shot 2022-01-17 at 1 37 27 PM" src="https://user-images.githubusercontent.com/11492766/149823469-80bc8b9a-a8f1-4785-89e8-af380b6ff78e.png">
 
 
