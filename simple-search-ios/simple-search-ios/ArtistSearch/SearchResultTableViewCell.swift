@@ -13,10 +13,21 @@ class SearchResultTableViewCell: UITableViewCell {
     /// Contains logic for efficiently fetching UIImages to display in the cell
     var imageNetworkingProvider: ImageNetworkingProviding?
 
+    private var contentContainerView: UIStackView = {
+        let view = UIStackView()
+        view.axis = .horizontal
+        view.alignment = .center
+        view.distribution = .fillProportionally
+        view.spacing = Constants.contentSpacing
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     private var resultImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .systemGray6
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -26,29 +37,8 @@ class SearchResultTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: Constants.artistNameFontSize,
                                        weight: .medium)
         label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setUpView()
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setUpView()
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        setUpView()
-    }
-
-    override func updateConstraints() {
-        super.updateConstraints()
-        setUpView()
-    }
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -71,108 +61,77 @@ class SearchResultTableViewCell: UITableViewCell {
 private extension SearchResultTableViewCell {
 
     struct Constants {
-        static let imageViewTopBottomPadding = 12.0
-        static let imageViewLeadingPadding = 8.0
-        static let imageViewWidth = 70.0
-        static let imageViewHeight = 50.0
-        static let artistNameLeftPadding = 12.0
-        static let artistNameRightPadding = 8.0
+        static let imageViewWidth = 75.0
+        static let imageViewHeight = 60.0
         static let artistNameFontSize = 18.0
+        static let contentSpacing = 12.0
+        static let contentInsets = UIEdgeInsets(top: 4.0,
+                                                left: 8.0,
+                                                bottom: 4.0,
+                                                right: 8.0)
     }
 
     func setUpView() {
+        setUpContentContainerView()
         setUpImageView()
-        setUpArtistNameLabel()
-    }
 
-    func setUpImageView() {
         if resultImageView.superview == nil {
-            contentView.addSubview(resultImageView)
+            contentContainerView.addArrangedSubview(resultImageView)
         }
 
-        let topConstraint = NSLayoutConstraint(item: resultImageView,
+        if artistNameLabel.superview == nil {
+            contentContainerView.addArrangedSubview(artistNameLabel)
+        }
+    }
+
+    func setUpContentContainerView() {
+        if contentContainerView.superview == nil {
+            contentView.addSubview(contentContainerView)
+        }
+
+        let topConstraint = NSLayoutConstraint(item: contentContainerView,
                                                attribute: .top,
                                                relatedBy: .equal,
                                                toItem: contentView,
                                                attribute: .top,
                                                multiplier: 1,
-                                               constant: Constants.imageViewTopBottomPadding)
+                                               constant: Constants.contentInsets.top)
 
-        let leadingConstraint = NSLayoutConstraint(item: resultImageView,
+        let leadingConstraint = NSLayoutConstraint(item: contentContainerView,
                                                    attribute: .leading,
                                                    relatedBy: .equal,
                                                    toItem: contentView,
                                                    attribute: .leading,
                                                    multiplier: 1,
-                                                   constant: Constants.imageViewLeadingPadding)
+                                                   constant: Constants.contentInsets.left)
 
-        let widthConstraint = NSLayoutConstraint(item: resultImageView,
-                                                 attribute: .width,
-                                                 relatedBy: .equal,
-                                                 toItem: contentView,
-                                                 attribute: .width,
-                                                 multiplier: 0,
-                                                 constant: Constants.imageViewWidth)
-
-        let heightConstraint = NSLayoutConstraint(item: resultImageView,
-                                                  attribute: .height,
-                                                  relatedBy: .equal,
-                                                  toItem: contentView,
-                                                  attribute: .height,
-                                                  multiplier: 0,
-                                                  constant: Constants.imageViewHeight)
-
-        let bottomConstraint = NSLayoutConstraint(item: resultImageView,
-                                                  attribute: .bottom,
-                                                  relatedBy: .equal,
-                                                  toItem: contentView,
-                                                  attribute: .bottom,
-                                                  multiplier: 1,
-                                                  constant: -Constants.imageViewTopBottomPadding)
-
-        NSLayoutConstraint.activate([
-            topConstraint,
-            leadingConstraint,
-            widthConstraint,
-            heightConstraint,
-            bottomConstraint
-        ])
-    }
-
-    func setUpArtistNameLabel() {
-        if artistNameLabel.superview == nil {
-            contentView.addSubview(artistNameLabel)
-        }
-
-        let centerYConstraint = NSLayoutConstraint(item: artistNameLabel,
-                                                   attribute: .centerY,
-                                                   relatedBy: .equal,
-                                                   toItem: contentView,
-                                                   attribute: .centerY,
-                                                   multiplier: 1,
-                                                   constant: 0)
-
-        let leadingConstraint = NSLayoutConstraint(item: artistNameLabel,
-                                                   attribute: .leading,
-                                                   relatedBy: .equal,
-                                                   toItem: resultImageView,
-                                                   attribute: .trailing,
-                                                   multiplier: 1,
-                                                   constant: Constants.artistNameLeftPadding)
-
-        let trailingConstraint = NSLayoutConstraint(item: artistNameLabel,
+        let trailingConstraint = NSLayoutConstraint(item: contentContainerView,
                                                     attribute: .trailing,
                                                     relatedBy: .equal,
                                                     toItem: contentView,
                                                     attribute: .trailing,
                                                     multiplier: 1,
-                                                    constant: -Constants.artistNameRightPadding)
+                                                    constant: -Constants.contentInsets.right)
+
+        let bottomConstraint = NSLayoutConstraint(item: contentContainerView,
+                                                  attribute: .bottom,
+                                                  relatedBy: .equal,
+                                                  toItem: contentView,
+                                                  attribute: .bottom,
+                                                  multiplier: 1,
+                                                  constant: -Constants.contentInsets.bottom)
 
         NSLayoutConstraint.activate([
-            centerYConstraint,
+            topConstraint,
             leadingConstraint,
-            trailingConstraint
+            trailingConstraint,
+            bottomConstraint
         ])
+    }
+
+    func setUpImageView() {
+        resultImageView.heightAnchor.constraint(equalToConstant: Constants.imageViewHeight).isActive = true
+        resultImageView.widthAnchor.constraint(equalToConstant: Constants.imageViewWidth).isActive = true
     }
 
     func setImage(imageURL: URL) {
