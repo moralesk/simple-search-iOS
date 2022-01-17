@@ -87,7 +87,7 @@ extension AlbumListViewController: UICollectionViewDelegate {
                                               artist: self?.artistName ?? "",
                                               album: album.title)
                 case .failure(let error):
-                    print(error)
+                    assertionFailure(error.localizedDescription)
                 }
             }
         }
@@ -110,7 +110,7 @@ extension AlbumListViewController: UICollectionViewDelegateFlowLayout {
         // create a square cell size that is half of the full screen width
         // with the left and right cell paddings subtracted
         let portraitOrientationWidth = UIScreen.main.bounds.width / 2 - (Constants.cellPadding * 2)
-        let labelHeight = 65.0
+        let labelHeight = Constants.collectionViewCellLabelHeight
         return CGSize(width: portraitOrientationWidth, height: portraitOrientationWidth + labelHeight)
     }
 }
@@ -120,6 +120,7 @@ private extension AlbumListViewController {
     
     struct Constants {
         static let cellPadding: CGFloat = 8
+        static let collectionViewCellLabelHeight = 65.0
     }
     
     func navigateToTracklist(tracks: [Track], artist: String, album: String) {

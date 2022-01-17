@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Displays track information (track number, name, artist, duration)
 class TrackTableViewCell: UITableViewCell {
 
     private let contentContainerView: UIStackView = {

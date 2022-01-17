@@ -143,7 +143,7 @@ private extension SearchResultTableViewCell {
                         self?.resultImageView.image = image
                     }
                 case .failure(let error):
-                    print(error)
+                    assertionFailure(error.localizedDescription)
                 }
             }
         }

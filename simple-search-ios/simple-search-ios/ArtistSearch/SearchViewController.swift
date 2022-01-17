@@ -80,7 +80,7 @@ extension SearchViewController: UISearchResultsUpdating {
                         }
                     case .failure(let error):
                         // TODO: show error state
-                        print(error)
+                        assertionFailure(error.localizedDescription)
                     }
                     
                     DispatchQueue.main.async {

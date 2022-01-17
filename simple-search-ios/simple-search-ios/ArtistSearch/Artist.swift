@@ -18,21 +18,11 @@ struct Artists: Decodable {
 class Artist: Decodable {
     let id: Int
     let name: String
-    let link: String
     let picture: String
-    let pictureSmall: String
-    let pictureMedium: String
-    let pictureLarge: String
-    let pictureXL: String
 
     enum CodingKeys: String, CodingKey {
         case id
         case name
-        case link
         case picture
-        case pictureSmall = "picture_small"
-        case pictureMedium = "picture_medium"
-        case pictureLarge = "picture_big"
-        case pictureXL = "picture_xl"
     }
 }

@@ -150,6 +150,7 @@
 				C9575B75278F55170090130E /* Assets.xcassets */,
 				C9575B77278F55170090130E /* LaunchScreen.storyboard */,
 				C9575B7A278F55170090130E /* Info.plist */,
+				C9575BC82795CBF50090130E /* NavigationDetailTitleView.swift */,
 				C9575BAA279341970090130E /* NetworkingProviding.swift */,
 				C9575BAE279361370090130E /* DeezerAPI.swift */,
 				C9575BB8279395330090130E /* ImageNetworkingProvider.swift */,
@@ -198,7 +199,6 @@
 				C9575BB227938DC90090130E /* TracklistViewController.swift */,
 				C9575BBA27944D1E0090130E /* AlbumCollectionViewCell.swift */,
 				C9575BBF2794B3C50090130E /* TrackTableViewCell.swift */,
-				C9575BC82795CBF50090130E /* NavigationDetailTitleView.swift */,
 			);
 			path = AlbumDetails;
 			sourceTree = "<group>";
