@@ -34,8 +34,7 @@ class SearchResultTableViewCell: UITableViewCell {
 
     private var artistNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: Constants.artistNameFontSize,
-                                       weight: .medium)
+        label.font = Constants.artistNameFont
         label.textAlignment = .left
         return label
     }()
@@ -63,7 +62,8 @@ private extension SearchResultTableViewCell {
     struct Constants {
         static let imageViewWidth = 75.0
         static let imageViewHeight = 60.0
-        static let artistNameFontSize = 18.0
+        static let artistNameFont = UIFont.systemFont(ofSize: 18.0,
+                                                      weight: .medium)
         static let contentSpacing = 12.0
         static let contentInsets = UIEdgeInsets(top: 4.0,
                                                 left: 8.0,

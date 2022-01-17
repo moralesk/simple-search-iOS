@@ -19,16 +19,11 @@ class TrackTableViewCell: UITableViewCell {
         return view
     }()
 
-    private let numberContainerView: UIView = {
-        let view = UIView()
-        view.setContentCompressionResistancePriority(.required, for: .horizontal)
-        return view
-    }()
-
+    /// Used to keep track number label consistent and right aligned when in the `contentContainerView`
+    private let numberContainerView = UIView()
     private let numberLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: Constants.numberFontSize,
-                                       weight: .medium)
+        label.font = Constants.numberFont
         label.textAlignment = .right
         label.setContentCompressionResistancePriority(.required, for: .horizontal)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -43,24 +38,21 @@ class TrackTableViewCell: UITableViewCell {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: Constants.nameFontSize,
-                                       weight: .medium)
+        label.font = Constants.nameFont
         label.textAlignment = .left
         return label
     }()
 
     private let artistLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: Constants.artistFontSize,
-                                       weight: .thin)
+        label.font = Constants.artistFont
         label.textAlignment = .left
         return label
     }()
 
     private let durationLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: Constants.durationFontSize,
-                                       weight: .medium)
+        label.font = Constants.durationFont
         label.setContentCompressionResistancePriority(.required, for: .horizontal)
         label.textAlignment = .right
         return label
@@ -68,26 +60,6 @@ class TrackTableViewCell: UITableViewCell {
 
     /// Provides functionality for formatting the track duration into a time string
     var trackDurationProvider: TrackDurationProviding?
-
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setUpView()
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setUpView()
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        setUpView()
-    }
-
-    override func updateConstraints() {
-        super.updateConstraints()
-        setUpView()
-    }
 
     /// Sets up view given artist info
     func bind(track: Track) {
@@ -104,10 +76,14 @@ class TrackTableViewCell: UITableViewCell {
 private extension TrackTableViewCell {
 
     struct Constants {
-        static let numberFontSize = 20.0
-        static let nameFontSize = 18.0
-        static let artistFontSize = 14.0
-        static let durationFontSize = 16.0
+        static let numberFont = UIFont.systemFont(ofSize: 20.0,
+                                                  weight: .medium)
+        static let nameFont = UIFont.systemFont(ofSize: 18.0,
+                                                weight: .medium)
+        static let artistFont = UIFont.systemFont(ofSize: 14.0,
+                                                  weight: .thin)
+        static let durationFont = UIFont.systemFont(ofSize: 16.0,
+                                                    weight: .medium)
         static let contentInsets = UIEdgeInsets(top: 8.0,
                                                 left: 8.0,
                                                 bottom: 8.0,

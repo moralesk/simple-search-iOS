@@ -19,8 +19,7 @@ class AlbumCollectionViewCell: UICollectionViewCell {
     
     private var albumTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: Constants.albumTitleFontSize,
-                                       weight: .medium)
+        label.font = Constants.albumTitleFont
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -28,8 +27,7 @@ class AlbumCollectionViewCell: UICollectionViewCell {
     
     private var artistNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: Constants.artistNameFontSize,
-                                       weight: .thin)
+        label.font = Constants.artistNameFont
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -63,8 +61,10 @@ private extension AlbumCollectionViewCell {
         static let imageViewLeadingTrailingPadding = 0.0
         static let albumTitleLeftRightPadding = 8.0
         static let albumTitleTopPadding = 8.0
-        static let albumTitleFontSize = 16.0
-        static let artistNameFontSize = 14.0
+        static let albumTitleFont = UIFont.systemFont(ofSize: 16.0,
+                                                      weight: .medium)
+        static let artistNameFont = UIFont.systemFont(ofSize: 14.0,
+                                                      weight: .thin)
         static let artistNameTopPadding = 4.0
         static let artistNameBottomPadding = 12.0
     }
@@ -210,7 +210,8 @@ private extension AlbumCollectionViewCell {
                         self?.albumImageView.image = image
                     }
                 case .failure(let error):
-                    print(error)
+                    // TODO: error handling
+                    assertionFailure(error.localizedDescription)
                 }
             }
         }

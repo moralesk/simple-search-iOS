@@ -12,8 +12,7 @@ class SearchResultHeaderView: UIView {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: Constants.titleLabelFontSize,
-                                       weight: .thin)
+        label.font = Constants.titleLabelFont
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -29,7 +28,8 @@ class SearchResultHeaderView: UIView {
 private extension SearchResultHeaderView {
 
     struct Constants {
-        static let titleLabelFontSize = 22.0
+        static let titleLabelFont = UIFont.systemFont(ofSize: 22.0,
+                                                      weight: .thin)
         static let titleLabelInsets = UIEdgeInsets(top: 14.0,
                                                    left: 8.0,
                                                    bottom: 14.0,
@@ -49,29 +49,29 @@ private extension SearchResultHeaderView {
                   multiplier: 1,
                   constant: Constants.titleLabelInsets.top),
 
-            .init(item: titleLabel,
-                  attribute: .leading,
-                  relatedBy: .equal,
-                  toItem: self,
-                  attribute: .leading,
-                  multiplier: 1,
-                  constant: Constants.titleLabelInsets.left),
+                .init(item: titleLabel,
+                      attribute: .leading,
+                      relatedBy: .equal,
+                      toItem: self,
+                      attribute: .leading,
+                      multiplier: 1,
+                      constant: Constants.titleLabelInsets.left),
 
-            .init(item: titleLabel,
-                  attribute: .trailing,
-                  relatedBy: .equal,
-                  toItem: self,
-                  attribute: .trailing,
-                  multiplier: 1,
-                  constant: -Constants.titleLabelInsets.right),
+                .init(item: titleLabel,
+                      attribute: .trailing,
+                      relatedBy: .equal,
+                      toItem: self,
+                      attribute: .trailing,
+                      multiplier: 1,
+                      constant: -Constants.titleLabelInsets.right),
 
-            .init(item: titleLabel,
-                  attribute: .bottom,
-                  relatedBy: .equal,
-                  toItem: self,
-                  attribute: .bottom,
-                  multiplier: 1,
-                  constant: -Constants.titleLabelInsets.bottom)
+                .init(item: titleLabel,
+                      attribute: .bottom,
+                      relatedBy: .equal,
+                      toItem: self,
+                      attribute: .bottom,
+                      multiplier: 1,
+                      constant: -Constants.titleLabelInsets.bottom)
         ])
     }
 }
